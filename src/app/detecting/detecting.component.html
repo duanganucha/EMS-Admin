@@ -2,36 +2,47 @@
   <div class="container-fluid">
 
 
-    <div class="row" >
+    <div class="row">
+        <div class="col-md-3">
 
-      <div class="col-md-3" *ngFor="let team of teams">
-        <div class="card" >
-          <!--Card image-->
-          <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(97).jpg" alt="Card image cap">
-
+        <div class="card">
+            <!--Card image-->
+            <img class="img-fluid" src="{{item?.imageBase64}}"  alt="Card image cap">
+  
             <!--Title-->
-            <h4 class="card-title">หน่วย :  {{team.name}}  </h4>
+            <h4 class="card-title">เหตุการณ์ : {{item?.scene}} </h4>
             <!--Text-->
-                <ul class="list-group">
-                    <li class="list-group-item">1. fire attack</li>
-                    <li class="list-group-item">2. water</li>
-                    <li class="list-group-item">3. Oxygen</li>
-                    <li class="list-group-item">4. </li>
-                  </ul>
-            <a  class="btn btn-primary waves-light" mdbWavesEffect>เลือก</a>
+            <ul class="list-group">
+              <li class="list-group-item">เบอร์โทร : {{ item?.telNumber }}</li>
+              <li class="list-group-item">สถานที่เกิดเหตุ : {{ item?.locationDetail}}</li>         
+            </ul>
+           
+            <a class="btn btn-primary waves-light" mdbWavesEffect>เลือก</a>
+          </div>
+          </div>
+
+
+      <div class="col-md-3" *ngFor="let team of teams" (click)="showTeam(team)">
+        <div class="card">
+          <!--Card image-->
+          <img class="img-fluid" src="http://m.carryboyrescue.com/Catalogue/single-cab/rescue_single_cab2.png"
+            alt="Card image cap">
+
+          <!--Title-->
+          <h4 class="card-title">หน่วย : {{team.name}} </h4>
+          <!--Text-->
+          <ul class="list-group">
+            <li class="list-group-item">{{ team.id }} {{ team.name }}</li>
+          </ul>
+          <li class="list-group-item">1. fire attack</li>
+          <li class="list-group-item">2. water</li>
+          <li class="list-group-item">3. Oxygen</li>
+          <li class="list-group-item">4. </li>
+          <a class="btn btn-primary waves-light" mdbWavesEffect>เลือก</a>
         </div>
       </div>
     </div>
 
-      <div >
-        <ul>
-          <li> {{ item | json  }}</li>
-          <li> {{ item?.telNumber  }}</li>
-          <li> {{ item?.locationDetail  }}</li>
-
-        </ul>
-      </div>
-    
 
     <div class="row">
 
@@ -63,7 +74,7 @@
           <div class="row">
             <div class="col-sm">
               <button type="button" class="btn btn-danger btn-lg btn-block" (click)="routePath()">หาเส้นทาง</button>
-              <button type="button" class="btn btn-primary btn-lg btn-block" (click)="calPath()">ล้างเส้นทาง</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block" (click)="clearPath()">ล้างเส้นทาง</button>
             </div>
           </div>
 

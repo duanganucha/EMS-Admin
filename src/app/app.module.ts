@@ -27,9 +27,11 @@ import { DetectingComponent } from './detecting/detecting.component';
 import { ChartComponent } from './chart/chart.component';
 import { AmbulanceComponent } from './ambulance/ambulance.component';
 import { FormsModule } from '@angular/forms';
-import { DetectingDetailComponent } from './detecting-detail/detecting-detail.component';
 import { FirebaseService } from './services/firebase.service';
 
+import { AgmCoreModule } from '@agm/core';            // @agm/core
+import { AgmDirectionModule } from 'agm-direction';   // agm-direction
+ 
 
 @NgModule({
   declarations: [
@@ -49,8 +51,8 @@ import { FirebaseService } from './services/firebase.service';
     SettingComponent,
     DetectingComponent,
     ChartComponent,
-    AmbulanceComponent,
-    DetectingDetailComponent
+    AmbulanceComponent
+    
   ],
   imports: [
     BrowserModule,FormsModule,
@@ -72,7 +74,11 @@ import { FirebaseService } from './services/firebase.service';
       {path:'chart',component:ChartComponent},  
 
       {path:'**',redirectTo:''}
-    ],{useHash:false})
+    ],{useHash:false}),
+    AgmCoreModule.forRoot({ // @agm/core
+      apiKey: 'AIzaSyCF3aH2Bk1v1-AOIaeDWFXzfsNjK0dh558'
+    }),
+    AgmDirectionModule 
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [AngularFireDatabase,FirebaseService],

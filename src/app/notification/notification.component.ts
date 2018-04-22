@@ -34,9 +34,6 @@ export class NotificationComponent {
     this.itemsRef.update(item.key, { scene : this.scene });
     this.itemsRef.update(item.key, { status : "Approve" });
     this.scene = "";
-
-    // this.router.navigate(['/detecting',item.key]);
-
   }
 
   onDrop(item){

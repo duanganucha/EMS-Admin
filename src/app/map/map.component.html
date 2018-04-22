@@ -1,2 +1,7 @@
-<br>
-<div id="map"></div>
+<button type="button" (click)="getDirection()">Get</button>
+ 
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-direction [panel]="myPanel" *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
+    
+</agm-map>
+<div #myPanel></div>

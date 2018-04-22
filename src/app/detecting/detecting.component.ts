@@ -19,6 +19,8 @@ export class DetectingComponent implements OnInit {
 
   itemRef: AngularFireObject<any>;
   item:Item;
+  id:string;
+  sub:Subscription;
 
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
@@ -36,9 +38,7 @@ export class DetectingComponent implements OnInit {
   public start_address: string;
   public end_address: string;
  
-  id:string;
-  sub:Subscription;
-  listings:any;
+  
 
   constructor(private route: ActivatedRoute ,private db: AngularFireDatabase) {
    
@@ -96,8 +96,8 @@ export class DetectingComponent implements OnInit {
     // this.path1 = this.selectCase.name
     // this.path2 = this.selectTeam.location 
 
-    this.path1 = { lat: 15.0987456, lng: 104.3163617 }
-    this.path2 = { lat: 15.1187152, lng: 104.3268533 }
+    this.path1 = { lat: 15.0987456, lng: 104.3163617 } //ทีมช่วยเหลือ
+    this.path2 = { lat: this.item.latitude, lng: this.item.longitude } //ปลายทาง
 
     this.calculateAndDisplayRoute(this.directionsService, this.directionsDisplay)
   }
@@ -122,20 +122,18 @@ export class DetectingComponent implements OnInit {
         console.log(response.routes[0].legs[0].distance.text)
         console.log(response.routes[0].legs[0].end_address)
         
-        this.distance
        
 
       } else {
         window.alert('Directions request failed due to ' + status);
-      }         this.distance
+      }         
 
     }
   );
 
   }
-  calPath() {
-    this.distance
-    
+  clearPath() {
+    alert("clear path")
   }
   
   StreetViewPanorama() {
@@ -159,8 +157,6 @@ export class DetectingComponent implements OnInit {
   }
 
 
-
-
   showCase(scense: Casedetail) {
     this.selectCase = scense;
     console.log(scense)
@@ -172,28 +168,27 @@ export class DetectingComponent implements OnInit {
     console.log(team)
   }
 
-  createMap(location = new google.maps.LatLng(15.9842532, 101.1071849)) {
-
-    let mapOptions = {
-      center: location,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      disableDefaultUI: false
-    }
-    let mapEI = document.getElementById('map')
-    let map = new google.maps.Map(mapEI, mapOptions);
-
-    return map;
-
-  }
+  // createMap(location = new google.maps.LatLng(15.9842532, 101.1071849)) {
+  //   let mapOptions = {
+  //     center: location,
+  //     zoom: 15,
+  //     mapTypeId: google.maps.MapTypeId.ROADMAP,
+  //     disableDefaultUI: false
+  //   }
+  //   let mapEI = document.getElementById('map')
+  //   let map = new google.maps.Map(mapEI, mapOptions);
+  //   return map;
+  // }
 
 }
 
 interface Item {
   telNumber?:string;
-  latitude?:number;
-  longitude?:number;
+  latitude?:Number;
+  longitude?:Number;
   locationDetail?:string;
+  scene?:string;
+  imageBase64?:string
 
 }
 
