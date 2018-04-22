@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription'; //เอาไว้ทำ UnSubscribe
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
 import { Casedetail } from './../case-detail';
@@ -17,9 +17,8 @@ declare var google: any;
 })
 export class DetectingComponent implements OnInit {
 
-  itemsRef: AngularFireList<any>;
-  items: Observable<any[]>;
-  key;
+  itemRef: AngularFireObject<any>;
+  item:Item;
 
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
@@ -39,29 +38,26 @@ export class DetectingComponent implements OnInit {
  
   id:string;
   sub:Subscription;
-
+  listings:any;
 
   constructor(private route: ActivatedRoute ,private db: AngularFireDatabase) {
-    this.itemsRef = db.list('test');
-    // Use snapshotChanges().map() to store the key
-    this.items = this.itemsRef.snapshotChanges().map(changes => {
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+   
+
+    this.itemRef = db.object('test/-LAdufX7fVdRcb9UocIJ');
+    this.itemRef.snapshotChanges().subscribe(action => {
+    
+      console.log(action.payload.val())
+      this.item = action.payload.val();
     });
 
-// 
-    // this.filterBooks()
+
   }
 
 
- 
 
   ngOnInit() {
 
-    this.sub = this.route.params.subscribe(params =>{ 
-      this.id = params['key'];
-      // console.log(this.id)
-    });
-
+    this.id = this.route.snapshot.params['id'];
 
     this.casedetail = [
       new Casedetail(1, 'Halifax, NS'),
@@ -82,10 +78,10 @@ export class DetectingComponent implements OnInit {
 
 
   }
-  ngOnDestroy(){
-    // console.log('destroy');
-    this.sub.unsubscribe();
-  }
+  // ngOnDestroy(){
+  //   // console.log('destroy');
+  //   this.sub.unsubscribe();
+  // }
 
   MapStart() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -192,3 +188,12 @@ export class DetectingComponent implements OnInit {
   }
 
 }
+
+interface Item {
+  telNumber?:string;
+  latitude?:number;
+  longitude?:number;
+  locationDetail?:string;
+
+}
+

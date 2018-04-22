@@ -73,7 +73,7 @@
                 </div>
                 <img src="{{ item.imageBase64 }}" height=50% class="img-fluid">
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger waves-light" mdbWavesEffect (click)="onApprove(item)" >
+                  <button type="button" class="btn btn-danger waves-light" mdbWavesEffect (click)="onApprove(item)" [routerLink]="['/detecting/'+item.key]">
                     <i class="fa fa-check" aria-hidden="true"></i>เริ่มปฏิบัติการ</button>
                   <button type="button" class="btn btn-mdb-color waves-light" mdbWavesEffect (click)="onDrop(item)">
                     <i class="fa fa-folder-open" aria-hidden="true"></i> เก็บไว้</button>

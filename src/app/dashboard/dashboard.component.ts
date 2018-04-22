@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.initMap();
+    // this.initMap();
   }
   initMap() {
 

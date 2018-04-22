@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Team } from './../team';
 import { Casedetail } from './../case-detail';
 
@@ -8,10 +8,6 @@ import { Casedetail } from './../case-detail';
     templateUrl: './monitoring.component.html',
     styleUrls: ['./monitoring.component.scss']
 })
-export class MonitoringComponent implements OnInit {
-    ngOnInit(): void {
-        throw new Error("Method not implemented.");
-    }
-
-    
+export class MonitoringComponent   {
+  
 }

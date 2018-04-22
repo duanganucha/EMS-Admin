@@ -17,11 +17,7 @@ export class NotificationComponent {
   items: Observable<any[]>;
   scene:string = ""
   constructor(private db: AngularFireDatabase,private router : Router) {
-    // this.items = db.list('test').valueChanges();
-
-    // this.items = db.list('test', ref => ref.orderByChild('timestamp')).snapshotChanges().map(result => {
-    //   return result.reverse();
-    // })
+   
     this.itemsRef = db.list('test');
     this.items = this.itemsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -30,7 +26,7 @@ export class NotificationComponent {
   }
 
   onDelete(item) {
-    this.itemsRef.remove(item.key);
+    this.itemsRef.remove(item);
 
   }
 
@@ -39,7 +35,7 @@ export class NotificationComponent {
     this.itemsRef.update(item.key, { status : "Approve" });
     this.scene = "";
 
-    this.router.navigate(['/detecting',item.key]);
+    // this.router.navigate(['/detecting',item.key]);
 
   }
 

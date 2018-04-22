@@ -28,6 +28,7 @@ import { ChartComponent } from './chart/chart.component';
 import { AmbulanceComponent } from './ambulance/ambulance.component';
 import { FormsModule } from '@angular/forms';
 import { DetectingDetailComponent } from './detecting-detail/detecting-detail.component';
+import { FirebaseService } from './services/firebase.service';
 
 
 @NgModule({
@@ -74,7 +75,7 @@ import { DetectingDetailComponent } from './detecting-detail/detecting-detail.co
     ],{useHash:false})
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [AngularFireDatabase],
+  providers: [AngularFireDatabase,FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
