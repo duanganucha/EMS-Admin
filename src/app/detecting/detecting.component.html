@@ -1,0 +1,108 @@
+<body>
+  <div class="container-fluid">
+
+
+    <div class="row" >
+
+      <div class="col-md-3" *ngFor="let team of teams">
+        <div class="card" >
+          <!--Card image-->
+          <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(97).jpg" alt="Card image cap">
+
+            <!--Title-->
+            <h4 class="card-title">หน่วย :  {{team.name}}  </h4>
+            <!--Text-->
+                <ul class="list-group">
+                    <li class="list-group-item">1. fire attack</li>
+                    <li class="list-group-item">2. water</li>
+                    <li class="list-group-item">3. Oxygen</li>
+                    <li class="list-group-item">4. </li>
+                  </ul>
+            <a  class="btn btn-primary waves-light" mdbWavesEffect>เลือก</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-md-12">
+
+
+        <div class="row">
+          <div class="col-sm">
+            <div class="list-group">
+              <a class="list-group-item active">
+                Reporting
+              </a>
+              <a class="list-group-item list-group-item-action" *ngFor="let case of casedetail" (click)="showCase(case)">
+                {{ case.id }} {{ case.name }}
+              </a>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action active">
+                EMS Team
+              </button>
+              <button type="button" class="list-group-item list-group-item-action" *ngFor="let team of teams" (click)="showTeam(team)">
+                {{ team.id }} {{team.name}} {{ team.location}}
+              </button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm">
+              <button type="button" class="btn btn-danger btn-lg btn-block" (click)="routePath()">หาเส้นทาง</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block" (click)="calPath()">ล้างเส้นทาง</button>
+            </div>
+          </div>
+
+        </div>
+
+
+
+      </div>
+      <!-- ----------Map------------------ -->
+      <div class="col-md-12">
+        <div id="select">
+          <div class="container">
+            <div class="row">
+              <div class="alert alert-success col-sm-3">
+                ปลายทาง : {{ selectCase?.name }}
+              </div>
+              <div class="alert alert-success col-sm-1">
+                ==>>
+              </div>
+              <div class="alert alert-success col-sm-3">
+                ต้นทาง : {{ selectTeam?.name }}
+              </div>
+              <div class="alert alert-success col-sm-4">
+                ระยะทาง : {{ distance }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <br>
+          <div id="map2"></div>
+          <div id="pano"></div>
+        </div>
+        <br>
+
+        <div>
+          <div id="map"></div>
+        </div>
+
+        <div class="col-md-12">
+          <div id="right-panel"></div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ----------Map------------------ -->
+
+  </div>
+
+</body>
