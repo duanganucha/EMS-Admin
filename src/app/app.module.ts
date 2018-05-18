@@ -62,7 +62,7 @@ import { AgmDirectionModule } from 'agm-direction';   // agm-direction
     RouterModule.forRoot([
       {path: '',component:DashboardComponent},
       {path:'dashboard',component:DashboardComponent},
-      {path:'detecting/:key',component:DetectingComponent},
+      {path:'detecting/:id',component:DetectingComponent},
       {path:'detecting',component:DetectingComponent},
       {path:'monitoring',component:MonitoringComponent},
       {path:'notification',component:NotificationComponent},  

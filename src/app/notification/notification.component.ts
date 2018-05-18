@@ -30,10 +30,11 @@ export class NotificationComponent {
 
   }
 
-  onApprove(item){
-    this.itemsRef.update(item.key, { scene : this.scene });
-    this.itemsRef.update(item.key, { status : "Approve" });
+  onApprove(key){
+    this.itemsRef.update(key, { scene : this.scene });
+    this.itemsRef.update(key, { status : "Approve" });
     this.scene = "";
+    this.router.navigate(['/detecting', key]);
   }
 
   onDrop(item){

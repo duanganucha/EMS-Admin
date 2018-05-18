@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Router } from '@angular/router' 
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-map',
@@ -7,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent   {
+  itemsRef: AngularFireList<any>;
+  items: Observable<any[]>;
+
 
   lat: Number = 24.799448;
   lng: Number = 120.979021;

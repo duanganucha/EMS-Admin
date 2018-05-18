@@ -19,14 +19,13 @@ export class DetectingComponent implements OnInit {
 
   itemRef: AngularFireObject<any>;
   item:Item;
-  id:string;
-  sub:Subscription;
+  id;
 
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
 
   casedetail: Casedetail[];
-  selectCase: Casedetail;
+  selectCase;
 
   teams: Team[];
   selectTeam: Team;
@@ -43,27 +42,23 @@ export class DetectingComponent implements OnInit {
   constructor(private route: ActivatedRoute ,private db: AngularFireDatabase) {
    
 
-    this.itemRef = db.object('test/-LAdufX7fVdRcb9UocIJ');
+    
+    this.id = this.route.snapshot.params['id'];
+
+    this.itemRef = db.object(`test/${this.id}`);
     this.itemRef.snapshotChanges().subscribe(action => {
     
-      console.log(action.payload.val())
       this.item = action.payload.val();
+      console.log(this.item)
+
     });
 
 
   }
-
+ 
 
 
   ngOnInit() {
-
-    this.id = this.route.snapshot.params['id'];
-
-    this.casedetail = [
-      new Casedetail(1, 'Halifax, NS'),
-      new Casedetail(2, 'Boston, MA'),
-      new Casedetail(3, 'New York, NY'),
-    ]
 
     this.teams = [
 
@@ -78,10 +73,7 @@ export class DetectingComponent implements OnInit {
 
 
   }
-  // ngOnDestroy(){
-  //   // console.log('destroy');
-  //   this.sub.unsubscribe();
-  // }
+ 
 
   MapStart() {
     var map = new google.maps.Map(document.getElementById('map'), {

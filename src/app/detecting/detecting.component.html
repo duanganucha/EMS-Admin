@@ -17,7 +17,7 @@
               <li class="list-group-item">สถานที่เกิดเหตุ : {{ item?.locationDetail}}</li>         
             </ul>
            
-            <a class="btn btn-primary waves-light" mdbWavesEffect>เลือก</a>
+            <a class="btn btn-primary waves-light" mdbWavesEffect (click)="showCase(item)">เลือก</a>
           </div>
           </div>
 
@@ -38,7 +38,7 @@
           <li class="list-group-item">2. water</li>
           <li class="list-group-item">3. Oxygen</li>
           <li class="list-group-item">4. </li>
-          <a class="btn btn-primary waves-light" mdbWavesEffect>เลือก</a>
+          <a class="btn btn-primary waves-light" mdbWavesEffect >เลือก</a>
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@
           <div class="container">
             <div class="row">
               <div class="alert alert-success col-sm-3">
-                ปลายทาง : {{ selectCase?.name }}
+                ปลายทาง : {{ selectCase?.locationDetail }}
               </div>
               <div class="alert alert-success col-sm-1">
                 ==>>
